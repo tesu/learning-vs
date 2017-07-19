@@ -1,0 +1,9 @@
+#!/bin/bash
+
+hipp='--output-csp i444 --chroma-qp-offset -4'
+#zones='--zones "2759,4912,b=0.85,deblock=3:-2/30690,32842,b=0.90,deblock=1:1"'
+echo vs script: $1
+echo output: $2
+#removed fade-compensate
+vspipe $1 --y4m - | x264 --demuxer y4m -o $2 - --colormatrix bt709 $hipp --ref 16 --deblock -1:-1 --me umh --subme 10 --psy-rd 0.80:0.0 --merange 32 --trellis 2 --no-dct-decimate 0.00 --bframes 16 --b-adapt 2 --direct auto --slow-firstpass --no-fast-pskip --keyint 240 --min-keyint 24 --rc-lookahead 48 --crf 14 --qcomp 0.70 --aq-mode 3 --aq-strength 0.85 $zones
+

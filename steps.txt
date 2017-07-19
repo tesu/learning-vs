@@ -1,0 +1,9 @@
+sudo pacaur -S tk vapoursynth
+pacaur -S vapoursynth-editor
+vapoursynth-plugin-lsmashsource-git	
+vapoursynth-plugin-fmtconv
+x264
+
+
+vspipe --y4m script.vpy - | x264 --demuxer y4m - --output encoded.mkv
+
